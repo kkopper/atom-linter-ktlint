@@ -5,14 +5,12 @@ language: generic
 # On macOS, we use Homebrew, which is configured at the very end of this file.
 install:
   - >-
-      if [ $TRAVIS_OS_NAME = linux ]
-      then
-        curl -sSLO $(curl -s https://api.github.com/repos/pinterest/ktlint/releases/latest | grep 'browser_download_url' | cut -d '"' -f 4 | grep 'ktlint$')
-        chmod u+x ktlint
-        mkdir -p /opt/ktlint
-        mv ktlint /opt/ktlint/
-        export PATH="$PATH:/opt/ktlint/"
-      fi
+      [ $TRAVIS_OS_NAME = linux ] &&
+      curl -sSLO $(curl -s https://api.github.com/repos/pinterest/ktlint/releases/latest | jq -r '.assets[].browser_download_url' | grep 'ktlint$') &&
+      chmod u+x ktlint &&
+      mkdir -p /opt/ktlint &&
+      mv ktlint opt/ktlint/ &&
+      export PATH="$PATH:/opt/ktlint/"
 
 env:
   global:
