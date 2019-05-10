@@ -9,7 +9,7 @@ install:
       curl -sSLO $(curl -s https://api.github.com/repos/pinterest/ktlint/releases/latest | jq -r '.assets[].browser_download_url' | grep 'ktlint$') &&
       chmod u+x ktlint &&
       mkdir -p /opt/ktlint &&
-      mv ktlint opt/ktlint/ &&
+      mv ktlint /opt/ktlint/ &&
       export PATH="$PATH:/opt/ktlint/"
 
 env:
