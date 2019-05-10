@@ -39,6 +39,9 @@
     "atom-package-deps": "5.1.0"
   },
   "devDependencies": {
+    "eslint": "5.16.0",
+    "eslint-config-airbnb-base": "13.1.0",
+    "eslint-plugin-import": "2.17.2",
     "jasmine-fix": "1.3.1"
   },
   "package-deps": [
@@ -50,6 +53,31 @@
       "versions": {
         "2.0.0": "provideLinter"
       }
+    }
+  },
+  "scripts": {
+    "test": "apm test",
+    "lint": "eslint ."
+  },
+  "eslintConfig": {
+    "extends": "airbnb-base",
+    "rules": {
+      "global-require": "off",
+      "import/no-unresolved": [
+        "error",
+        {
+          "ignore": [
+            "atom"
+          ]
+        }
+      ]
+    },
+    "env": {
+      "node": true,
+      "browser": true
+    },
+    "globals": {
+      "atom": true
     }
   }
 }
