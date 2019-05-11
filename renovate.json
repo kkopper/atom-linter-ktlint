@@ -1,5 +1,16 @@
 {
   "extends": [
     "config:base"
+  ],
+  "semanticCommits": true,
+  "rangeStrategy": "pin",
+  "ignorePaths": [
+    "spec/files/**"
+  ],
+  "packageRules": [
+    {
+      "packagePatterns": ["^eslint"],
+      "groupName": "ESLint packages"
+    }
   ]
 }
