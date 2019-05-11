@@ -10,7 +10,8 @@ install:
       chmod u+x ktlint &&
       mkdir -p /opt/ktlint &&
       mv ktlint /opt/ktlint/ &&
-      export PATH="$PATH:/opt/ktlint/"
+      export PATH="$PATH:/opt/ktlint/" ||
+      true
 
 env:
   global:
