@@ -1,6 +1,10 @@
 # linter-ktlint
 
 [![Build Status](https://travis-ci.com/kkopper/atom-linter-ktlint.svg?branch=master)](https://travis-ci.com/kkopper/atom-linter-ktlint)
+![APM](https://img.shields.io/apm/v/linter-ktlint.svg)
+![APM](https://img.shields.io/apm/dm/linter-ktlint.svg)
+![APM](https://img.shields.io/apm/l/linter-ktlint.svg)
+
 A linter plugin providing support for [ktlint](https://ktlint.github.io) using [Linter](https://github.com/AtomLinter/Linter).
 
 ## Requirements
