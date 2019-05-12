@@ -13,7 +13,7 @@ before_install:
 
 # Download and install ktlint
 install:
-  - curl -sSLO $KTLINT_DOWNOAD_URL
+  - curl -sSLO $KTLINT_DOWNLOAD_URL
   - chmod u+x ktlint
   - mv ktlint /opt/ktlint/
 
