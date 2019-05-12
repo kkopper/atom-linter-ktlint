@@ -60,3 +60,6 @@ addons:
     - fakeroot
     - git
     - libsecret-1-dev
+  homebrew:
+    packages:
+    - jq
