@@ -3,8 +3,8 @@ language: generic
 
 # Get download link for latest ktlint release
 before_install:
-  - mkdir -p /opt/ktlint
-  - export PATH="$PATH:/opt/ktlint/"
+  - mkdir -p /tmp/ktlint
+  - export PATH="$PATH:/tmp/ktlint/"
   - >-
       export KTLINT_DOWNLOAD_URL=$(
       curl -sS https://api.github.com/repos/pinterest/ktlint/releases/latest |
@@ -15,10 +15,7 @@ before_install:
 install:
   - curl -sSLO $KTLINT_DOWNLOAD_URL
   - chmod u+x ktlint
-  - mv ktlint /opt/ktlint/
-
-# Check if ktlint is properly installed
-after_install:
+  - mv ktlint /tmp/ktlint/
   - ktlint --version
 
 env:
