@@ -1,17 +1,25 @@
 ### Project specific config ###
 language: generic
 
-# On Linux, we need to download ktlint manually
-# On macOS, we use Homebrew, which is configured at the very end of this file.
-install:
+# Get download link for latest ktlint release
+before_install:
+  - mkdir -p /opt/ktlint
+  - export PATH="$PATH:/opt/ktlint/"
   - >-
-      [ $TRAVIS_OS_NAME = linux ] &&
-      curl -sSLO $(curl -s https://api.github.com/repos/pinterest/ktlint/releases/latest | jq -r '.assets[].browser_download_url' | grep 'ktlint$') &&
-      chmod u+x ktlint &&
-      mkdir -p /opt/ktlint &&
-      mv ktlint /opt/ktlint/ &&
-      export PATH="$PATH:/opt/ktlint/" ||
-      true
+      export KTLINT_DOWNLOAD_URL=$(
+      curl -sS https://api.github.com/repos/pinterest/ktlint/releases/latest |
+      jq -r '.assets[] | select(.name == "ktlint").browser_download_url')
+  - echo "Downloading ktlint from $KTLINT_DOWNLOAD_URL"
+
+# Download and install ktlint
+install:
+  - curl -sSLO $KTLINT_DOWNOAD_URL
+  - chmod u+x ktlint
+  - mv ktlint /opt/ktlint/
+
+# Check if ktlint is properly installed
+after_install:
+  - ktlint --version
 
 env:
   global:
@@ -55,8 +63,3 @@ addons:
     - fakeroot
     - git
     - libsecret-1-dev
-### Project specific addition ###
-  homebrew:
-    packages:
-    - ktlint
-    update: true
