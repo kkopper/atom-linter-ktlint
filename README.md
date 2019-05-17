@@ -1,6 +1,7 @@
 # linter-ktlint
 
 [![Build Status](https://travis-ci.com/kkopper/atom-linter-ktlint.svg?branch=master)](https://travis-ci.com/kkopper/atom-linter-ktlint)
+[![codebeat badge](https://codebeat.co/badges/7be164ed-c81d-443b-a73c-1f1900039fda)](https://codebeat.co/projects/github-com-kkopper-atom-linter-ktlint-master)
 ![APM](https://img.shields.io/apm/v/linter-ktlint.svg)
 ![APM](https://img.shields.io/apm/dm/linter-ktlint.svg)
 ![APM](https://img.shields.io/apm/l/linter-ktlint.svg)
