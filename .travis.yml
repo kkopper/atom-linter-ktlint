@@ -7,8 +7,8 @@ before_install:
   - export PATH="$PATH:/tmp/ktlint/"
   - >-
       export KTLINT_DOWNLOAD_URL=$(
-      curl -vS https://api.github.com/repos/pinterest/ktlint/releases/latest |
-      tee /dev/tty |
+      curl -sSH 'Authorization: token $GH_API_TOKEN'
+      https://api.github.com/repos/pinterest/ktlint/releases/latest |
       jq -r '.assets[] | select(.name == "ktlint").browser_download_url')
   - echo "Downloading ktlint from $KTLINT_DOWNLOAD_URL"
 
@@ -59,6 +59,7 @@ addons:
     - fakeroot
     - git
     - libsecret-1-dev
+    - libgconf-2-4
   homebrew:
     packages:
     - jq
