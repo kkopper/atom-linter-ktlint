@@ -14,6 +14,7 @@ install:
   - ps: $Env:KTLINT_DOWNLOAD_URL = ((Invoke-RestMethod https://api.github.com/repos/pinterest/ktlint/releases/latest -Headers @{"Authorization" = "token $Env:GH_API_TOKEN"} -verbose).assets | where {$_.name -eq "ktlint"}).browser_download_url
   - ps: Invoke-WebRequest "$Env:KTLINT_DOWNLOAD_URL" -OutFile "$Env:TEMP\ktlint\ktlint" -verbose
   - ps: Get-ChildItem -Path "$Env:TEMP\ktlint"
+  - ps: Get-Command ktlint
   - ps: ktlint --version
 
 ### Generic setup follows ###
