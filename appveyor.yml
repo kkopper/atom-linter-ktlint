@@ -1,0 +1,30 @@
+### Project specific config ###
+environment:
+  APM_TEST_PACKAGES:
+  ATOM_LINT_WITH_BUNDLED_NODE: "true"
+
+  matrix:
+  - ATOM_CHANNEL: stable
+  - ATOM_CHANNEL: beta
+
+install:
+  - ps: New-Item -ItemType Directory -Path ";$Env:TEMP\ktlint\"
+  - ps: $Env:PATH += ";$Env:TEMP\ktlint\"
+  - ps: $KTLINT_DOWNLOAD_URL = ((Invoke-RestMethod https://api.github.com/repos/pinterest/ktlint/releases/latest -FollowRelLink -Headers @{"Authorization" = "token $Env:GH_API_TOKEN"}).assets | where {$_.name -eq "ktlint"}).browser_download_url
+  - ps: Invoke-WebRequest "$KTLINT_DOWNLOAD_URL" -OutFile "$Env:TEMP\ktlint\ktlint"
+  - ps: ktlint --version
+
+### Generic setup follows ###
+build_script:
+  - ps: iex ((new-object net.webclient).DownloadString('https://raw.githubusercontent.com/atom/ci/master/build-package.ps1'))
+
+branches:
+  only:
+    - master
+
+version: "{build}"
+platform: x64
+clone_depth: 10
+skip_tags: true
+test: off
+deploy: off
