@@ -10,12 +10,9 @@ environment:
 install:
   - ps: New-Item -ItemType Directory -Path "$Env:TEMP\ktlint"
   - ps: $Env:PATH += ";$Env:TEMP\ktlint"
-  - ps: Write-Host $Env:PATH
-  - ps: $Env:KTLINT_DOWNLOAD_URL = ((Invoke-RestMethod https://api.github.com/repos/pinterest/ktlint/releases/latest -Headers @{"Authorization" = "token $Env:GH_API_TOKEN"} -verbose).assets | where {$_.name -eq "ktlint"}).browser_download_url
-  - ps: Invoke-WebRequest "$Env:KTLINT_DOWNLOAD_URL" -OutFile "$Env:TEMP\ktlint\ktlint" -verbose
-  - ps: Get-ChildItem -Path "$Env:TEMP\ktlint"
-  - ps: Get-Command ktlint
-  - ps: ktlint --version
+  - ps: $Env:KTLINT_DOWNLOAD_URL = ((Invoke-RestMethod https://api.github.com/repos/pinterest/ktlint/releases/latest -Headers @{"Authorization" = "token $Env:GH_API_TOKEN"}).assets | where {$_.name -eq "ktlint"}).browser_download_url
+  - ps: Invoke-WebRequest "$Env:KTLINT_DOWNLOAD_URL" -OutFile "$Env:TEMP\ktlint\ktlint"
+  - ps: java -jar (Get-Command ktlint).source --version
 
 ### Generic setup follows ###
 build_script:
