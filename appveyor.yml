@@ -8,11 +8,9 @@ environment:
   - ATOM_CHANNEL: beta
 
 install:
-  - ps: New-Item -ItemType Directory -Path "$Env:TEMP\ktlint"
-  - ps: $Env:PATH += ";$Env:TEMP\ktlint"
   - ps: $Env:KTLINT_DOWNLOAD_URL = ((Invoke-RestMethod https://api.github.com/repos/pinterest/ktlint/releases/latest -Headers @{"Authorization" = "token $Env:GH_API_TOKEN"}).assets | where {$_.name -eq "ktlint"}).browser_download_url
-  - ps: Invoke-WebRequest "$Env:KTLINT_DOWNLOAD_URL" -OutFile "$Env:TEMP\ktlint\ktlint"
-  - ps: java -jar (Get-Command ktlint).source --version
+  - ps: Invoke-WebRequest "$Env:KTLINT_DOWNLOAD_URL" -OutFile ".\spec\files\ktlint"
+  - ps: java -jar ".\spec\files\ktlint" --version
 
 ### Generic setup follows ###
 build_script:
