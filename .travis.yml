@@ -52,6 +52,8 @@ git:
 
 dist: xenial
 
+osx_image: xcode11
+
 addons:
   apt:
     packages:
