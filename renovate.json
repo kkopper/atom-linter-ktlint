@@ -2,7 +2,7 @@
   "extends": [
     "config:base"
   ],
-  "semanticCommits": true,
+  "semanticCommits": "enabled",
   "rangeStrategy": "pin",
   "ignorePaths": [
     "spec/files/**"
@@ -11,6 +11,10 @@
     {
       "packagePatterns": ["^eslint"],
       "groupName": "ESLint packages"
+    },
+    {
+      "updateTypes": ["minor", "patch", "pin", "digest"],
+      "automerge": true
     }
   ]
 }
